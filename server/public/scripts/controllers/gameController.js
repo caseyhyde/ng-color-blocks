@@ -1,9 +1,10 @@
-colorBlocks.controller('GameController', ['$scope', function($scope) {
+colorBlocks.controller('GameController', ['$scope', 'DataFactory', function($scope, DataFactory) {
 
 console.log('game controller running');
 
 var self = this;
-self.colors = ['red', 'blue', 'magenta', 'green', 'pink'];
+self.colors = DataFactory.chosenColors;
+
 
 // start game
 init();
@@ -12,7 +13,13 @@ init();
 function init() {
   self.messageText = "";
   self.currentColor = self.colors[randomNumber(0, self.colors.length - 1)];
-  self.colorPrompt = 'Can you find the ' + self.currentColor + ' block?'
+  console.log(self.colors.length);
+  if(self.colors.length < 1) {
+    self.colorPrompt = "Head over to the settings tab and add some colors " +
+    "to start the Game!";
+  } else {
+    self.colorPrompt = 'Can you find the ' + self.currentColor + ' block?'
+  }
 }
 
 // click handler for guessing colors

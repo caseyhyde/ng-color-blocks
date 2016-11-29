@@ -1,5 +1,14 @@
 <div class="row">
   <h1>Settings</h1>
 
-  To Do: UI to add colors to the game.
+  <h1>Select a color from the drop down list to add it to the game</h1>
+
+  <select ng-model="settings.chosenColor" ng-options="color for color in settings.colorsToChoose"></select>
+  <button ng-click="settings.chooseColors(settings.chosenColor)">Add Color</button>
+  <h1>Chosen Colors: (double click a color to show a cool message)</h1>
+  <ul>
+    <li ng-repeat="color in settings.DataFactory.chosenColors track by $index"
+    ng-dblclick="settings.deleteColor(color)">{{color}}</li>
+  </ul>
+
 </div>
